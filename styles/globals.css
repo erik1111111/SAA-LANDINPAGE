@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Force light theme by default */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  color-scheme: light;
+}
+
+/* Override any dark mode settings */
+html, body {
+  color: rgb(0, 0, 0);
+  background-color: white;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Custom focus styles */
+*:focus {
+  @apply outline-none ring-2 ring-indigo-500 ring-offset-2 ring-offset-white;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Custom form styles */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm;
+}
+
+button[type="submit"],
+button[type="button"] {
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+
+/* Estilos específicos para botones de formularios */
+.demo-submit-btn,
+.demo-submit-btn[type="submit"],
+.contact-submit-btn,
+.contact-submit-btn[type="submit"] {
+  background-color: #000000 !important;
+  border: none !important;
+}
+
+.demo-submit-btn:hover,
+.demo-submit-btn[type="submit"]:hover,
+.contact-submit-btn:hover,
+.contact-submit-btn[type="submit"]:hover {
+  background-color: #1a1a1a !important;
+  transform: scale(1.02) !important;
+}
+
+.contact-submit-btn:active,
+.contact-submit-btn[type="submit"]:active {
+  transform: scale(0.98) !important;
+}
+
+/* Navbar styles */
+.navbar-black {
+  background-color: #000000 !important;
+}
+
+/* Custom card styles */
+.card {
+  @apply bg-white overflow-hidden shadow rounded-lg;
+}
+
+.card-header {
+  @apply px-4 py-5 sm:px-6 border-b border-gray-200;
+}
+
+.card-body {
+  @apply px-4 py-5 sm:p-6;
+}
+
+.card-footer {
+  @apply px-4 py-4 sm:px-6 border-t border-gray-200;
+}
