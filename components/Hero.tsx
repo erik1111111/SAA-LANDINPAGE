@@ -4,15 +4,15 @@ import Link from 'next/link';
 
 export function Hero() {
   return (
-    <div className="bg-white">
+    <section className="bg-gray-200 font-sans">
       <div className="max-w-7xl mx-auto pt-12 pb-16 px-4 sm:pt-20 sm:pb-24 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-4 items-center">
           {/* Left side - Content */}
           <div className="text-center lg:text-left lg:col-span-6">
-            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-              <span className="block">Potencia</span>
-              <span className="block text-primary-600">la Gestión de tu</span>
-              <span className="block">Gimnasio <span className="text-gray-900">con Nosotros</span></span>
+            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl font-poppins">
+              <span className="block text-black">Potencia</span>
+              <span className="block text-black">la Gestión de tu</span>
+              <span className="block text-black">Gimnasio con Nosotros</span>
             </h1>
             <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
               La solución todo en uno para la gestión de miembros, pagos, clases y más. Optimiza las operaciones de tu gimnasio y lleva tu negocio al siguiente nivel.
@@ -49,6 +49,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

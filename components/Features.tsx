@@ -2,40 +2,58 @@
 
 const features = [
   {
-    name: 'Gestión de Miembros',
-    description: 'Administra fácilmente la información de los miembros, seguimiento de asistencia y estado de membresías.',
-    icon: '👥',
-  },
-  {
-    name: 'Pagos Automatizados',
-    description: 'Cobros recurrentes automáticos, seguimiento de pagos y recordatorios personalizables.',
-    icon: '💳',
-  },
-  {
-    name: 'Programación de Clases',
-    description: 'Crea horarios de clases, gestiona instructores y permite reservas en línea.',
-    icon: '📅',
-  },
-  {
-    name: 'Aplicación Móvil',
-    description: 'Acceso para miembros e instructores a través de nuestra aplicación móvil dedicada.',
-    icon: '📱',
-  },
-  {
-    name: 'Reportes y Análisis',
-    description: 'Métricas detalladas sobre asistencia, ingresos y rendimiento de tu gimnasio.',
+    name: 'Dashboard central',
+    description:
+      'Métricas de ventas, membresías activas, asistencia diaria e ingresos/pérdidas en un solo panel.',
     icon: '📊',
   },
   {
-    name: 'Soporte 24/7',
-    description: 'Asistencia técnica disponible en todo momento para resolver cualquier duda o problema.',
-    icon: '🛟',
+    name: 'Gestión de clientes',
+    description:
+      'Registro completo de clientes, historial, renovaciones, datos de salud y objetivos fitness.',
+    icon: '👥',
+  },
+  {
+    name: 'Pagos y membresías',
+    description:
+      'Integración con tarjetas, transferencias, QR y wallets digitales, con renovaciones automáticas.',
+    icon: '💳',
+  },
+  {
+    name: 'Clases y reservas',
+    description:
+      'Calendario de clases con límite de cupos, listas de espera y gestión de cancelaciones.',
+    icon: '🗓️',
+  },
+  {
+    name: 'Control de acceso',
+    description:
+      'Integración con códigos QR, tarjetas o huellas para controlar la entrada al gimnasio.',
+    icon: '🔑',
+  },
+  {
+    name: 'Productos y ventas',
+    description:
+      'Gestión de inventario y ventas de suplementos, ropa deportiva y accesorios.',
+    icon: '🏷️',
+  },
+  {
+    name: 'Marketing integrado',
+    description:
+      'Notificaciones push, email y WhatsApp automatizados, como avisos de vencimiento de membresía.',
+    icon: '📩',
+  },
+  {
+    name: 'Reportes avanzados',
+    description:
+      'Reportes de ingresos por mes, retención de clientes y clases más rentables.',
+    icon: '📈',
   },
 ];
 
 export function Features() {
   return (
-    <div className="py-12 bg-white">
+    <div id="features" className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
           <h2 className="text-base text-primary-600 font-semibold tracking-wide uppercase">Características</h2>

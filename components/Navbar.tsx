@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 export function Navbar() {
@@ -10,35 +10,51 @@ export function Navbar() {
 
   const navigation = [
     { name: 'Inicio', href: '/' },
+    { name: 'Características', href: '/#features' },
     { name: 'Precios', href: '/precios' },
     { name: 'Demo', href: '/demo' },
     { name: 'Contacto', href: '/contacto' },
   ];
 
+  // Add scroll effect to navbar
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
+
   return (
-    <nav className="navbar-black shadow-lg">
-      <div className="w-full max-w-7xl mx-auto px-0 navbar-black">
-        <div className="flex justify-between h-28 navbar-black">
-          <div className="flex items-center -ml-4">
-            <Link href="/" className="flex items-center">
+    <nav className="bg-white shadow-lg sticky top-0 z-50">
+      <div className="w-full max-w-5xl mx-auto px-0 bg-white">
+        <div className="flex justify-between items-center bg-white h-28">
+          <div className="flex items-center h-full -ml-8">
+            <Link href="/" className="flex items-center h-full">
               <img 
-                src="/images/trainer7.jpg" 
-                alt="Tainer7 Gym Logo" 
-                className="h-48 w-auto rounded-lg"
+                src="/images/trainerfit3.png" 
+                alt="TainerFit Logo" 
+                className="h-full w-auto object-contain"
               />
             </Link>
           </div>
-          <div className="hidden sm:flex items-center space-x-8">
-            <div className="flex items-center space-x-6">
+          <div className="hidden sm:flex items-center space-x-10">
+            <div className="flex items-center space-x-8">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={`${
                     pathname === item.href
-                      ? 'text-white font-semibold'
-                      : 'text-white/80 hover:text-white transition-colors duration-200'
-                  } text-sm font-medium focus:outline-none focus:ring-0 focus:ring-offset-0`}
+                      ? 'text-black font-semibold'
+                      : 'text-gray-700 hover:text-black transition-colors duration-200'
+                  } text-base font-medium focus:outline-none focus:ring-0 focus:ring-offset-0`}
                   tabIndex={0}
                 >
                   {item.name}
@@ -47,7 +63,7 @@ export function Navbar() {
             </div>
             <Link
               href="/demo"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
+              className="inline-flex items-center px-5 py-2.5 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
             >
               Probar Gratis
             </Link>
@@ -101,7 +117,7 @@ export function Navbar() {
 
       {isOpen && (
         <div className="sm:hidden navbar-black" id="mobile-menu">
-          <div className="pt-2 pb-3 space-y-1 navbar-black">
+          <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 transition-all duration-300 ${isOpen ? 'block' : 'hidden'}`}>
             {navigation.map((item) => (
               <Link
                 key={item.name}
