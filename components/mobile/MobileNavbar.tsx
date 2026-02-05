@@ -38,11 +38,11 @@ export function MobileNavbar() {
       <div className="w-full px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center h-full py-2">
+          <Link href="/" className="flex items-center h-full py-2 pl-6">
             <img 
               src="/images/trainerfit3.png" 
               alt="TrainerFit Logo" 
-              className="h-10 w-auto object-contain"
+              className="h-8 w-auto object-contain"
             />
           </Link>
 

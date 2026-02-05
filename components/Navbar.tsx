@@ -31,116 +31,158 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
-      <div className="w-full max-w-5xl mx-auto px-0 bg-white">
-        <div className="flex justify-between items-center bg-white h-28">
-          <div className="flex items-center h-full -ml-8">
-            <Link href="/" className="flex items-center h-full">
-              <img 
-                src="/images/trainerfit3.png" 
-                alt="TainerFit Logo" 
-                className="h-full w-auto object-contain"
-              />
-            </Link>
-          </div>
-          <div className="hidden sm:flex items-center space-x-10">
-            <div className="flex items-center space-x-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`${
-                    pathname === item.href
-                      ? 'text-black font-semibold'
-                      : 'text-gray-700 hover:text-black transition-colors duration-200'
-                  } text-base font-medium focus:outline-none focus:ring-0 focus:ring-offset-0`}
-                  tabIndex={0}
-                >
-                  {item.name}
-                </Link>
-              ))}
+    <>
+      <nav className="bg-white shadow-md sticky top-0 z-50 w-full">
+        <div className="w-full mx-auto px-4">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Link href="/" className="flex items-center">
+                <img 
+                  src="/images/trainerfit3.png" 
+                  alt="TrainerFit Logo" 
+                  className="h-8 w-auto"
+                  style={{ minWidth: '120px' }}
+                />
+              </Link>
             </div>
-            <Link
-              href="/demo"
-              className="inline-flex items-center px-5 py-2.5 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
-            >
-              Probar Gratis
-            </Link>
-          </div>
-          <div className="-mr-2 flex items-center sm:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 transition-colors duration-200"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              {!isOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex lg:items-center lg:space-x-6">
+              <div className="flex space-x-6">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`px-2 py-2 text-sm font-medium ${
+                      pathname === item.href
+                        ? 'text-primary-600 border-b-2 border-primary-600'
+                        : 'text-gray-700 hover:text-primary-600 hover:border-b-2 hover:border-gray-200'
+                    } transition-colors duration-200 whitespace-nowrap`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+              <div className="ml-6">
+                <Link
+                  href="/demo"
+                  className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 whitespace-nowrap transition-colors duration-200"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              )}
-            </button>
+                  Probar Gratis
+                </Link>
+              </div>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="flex items-center lg:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                aria-expanded="false"
+              >
+                <span className="sr-only">Abrir menú</span>
+                {!isOpen ? (
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {isOpen && (
-        <div className="sm:hidden navbar-black" id="mobile-menu">
-          <div className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 transition-all duration-300 ${isOpen ? 'block' : 'hidden'}`}>
+        {/* Mobile menu */}
+        <div 
+          className={`lg:hidden fixed inset-y-0 left-0 w-64 bg-white z-40 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}
+          style={{
+            top: '4rem',
+            height: 'calc(100vh - 4rem)',
+            boxShadow: '2px 0 10px rgba(0, 0, 0, 0.1)'
+          }}
+        >
+          <div className="px-4 pt-4 pb-8 space-y-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`${pathname === item.href
-                  ? '!bg-primary-100 border-primary-600 text-gray-900 font-bold'
-                  : 'border-transparent text-white hover:!bg-gray-800 hover:border-primary-400 hover:text-white'
-                  } block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors duration-200`}
+                className={`block px-4 py-3 text-base font-medium rounded-lg ${
+                  pathname === item.href
+                    ? 'bg-primary-50 text-primary-700'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="mt-4 pl-3">
+            
+            <div className="pt-4 mt-4 border-t border-gray-200">
               <Link
                 href="/demo"
-                className="inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-bold rounded-md shadow-sm text-gray-900 bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700 transition-all duration-200 transform hover:scale-105"
+                className="block w-full text-center px-4 py-3 text-base font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 transition-colors duration-200"
               >
                 Probar Gratis
               </Link>
+              <p className="mt-2 text-center text-sm text-gray-500">
+                Sin tarjeta de crédito. Cancela cuando quieras.
+              </p>
             </div>
           </div>
         </div>
-      )}
-    </nav>
+
+        {/* Overlay */}
+        {isOpen && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </nav>
+    </>
   );
 }
