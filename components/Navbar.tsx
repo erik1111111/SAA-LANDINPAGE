@@ -51,15 +51,15 @@ export function Navbar() {
   return (
     <>
       <nav className="bg-white shadow-md sticky top-0 z-50 w-full">
-        <div className="w-full max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center h-24 lg:h-24">
+        <div className="w-full max-w-7xl mx-auto px-8">
+          <div className="flex justify-between items-center h-24 lg:h-28">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 ml-12">
               <Link href="/" className="flex items-center">
                 <img 
                   src="/images/trainerfit3.png" 
                   alt="TrainerFit Logo" 
-                  className="h-14 w-auto lg:h-16"
+                  className="h-14 w-auto lg:h-20"
                   style={{ minWidth: '180px' }}
                 />
               </Link>
