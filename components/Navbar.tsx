@@ -59,8 +59,8 @@ export function Navbar() {
                 <img 
                   src="/images/trainerfit3.png" 
                   alt="TrainerFit Logo" 
-                  className="h-8 w-auto"
-                  style={{ minWidth: '120px' }}
+                  className="h-10 w-auto md:h-8"
+                  style={{ minWidth: '140px' }}
                 />
               </Link>
             </div>
