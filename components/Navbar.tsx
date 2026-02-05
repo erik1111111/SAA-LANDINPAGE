@@ -51,28 +51,28 @@ export function Navbar() {
   return (
     <>
       <nav className="bg-white shadow-md sticky top-0 z-50 w-full">
-        <div className="w-full mx-auto px-4">
-          <div className="flex justify-between items-center h-24 md:h-20">
+        <div className="w-full max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-24 lg:h-24">
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
                 <img 
                   src="/images/trainerfit3.png" 
                   alt="TrainerFit Logo" 
-                  className="h-14 w-auto md:h-12"
+                  className="h-14 w-auto lg:h-16"
                   style={{ minWidth: '180px' }}
                 />
               </Link>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex lg:items-center lg:space-x-6">
-              <div className="flex space-x-6">
+            <div className="hidden lg:flex lg:items-center lg:space-x-8">
+              <div className="flex space-x-8">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`px-2 py-2 text-sm font-medium ${
+                    className={`px-3 py-3 text-base font-medium ${
                       pathname === item.href
                         ? 'text-primary-600 border-b-2 border-primary-600'
                         : 'text-gray-700 hover:text-primary-600 hover:border-b-2 hover:border-gray-200'
@@ -82,10 +82,10 @@ export function Navbar() {
                   </Link>
                 ))}
               </div>
-              <div className="ml-6">
+              <div className="ml-8">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 whitespace-nowrap transition-colors duration-200"
+                  className="inline-flex items-center px-6 py-3 text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 whitespace-nowrap transition-colors duration-200"
                 >
                   Probar Gratis
                 </Link>
